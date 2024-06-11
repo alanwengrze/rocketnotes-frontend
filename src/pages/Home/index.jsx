@@ -5,6 +5,7 @@ import { ButtonText} from "../../components/ButtonText";
 import { Input } from "../../components/Input";
 import { Note } from "../../components/Note";
 import { Section } from "../../components/Section";
+import { Link } from "react-router-dom";
 
 export function Home(){
   return(
@@ -19,6 +20,7 @@ export function Home(){
         <li>
           <ButtonText
             title="Todos"
+            isActive
           />
         </li>
 
@@ -44,21 +46,24 @@ export function Home(){
 
       <Content>
         <Section title="Minhas notas">
-          <Note data={{
-            title: 'React',
-            tags: [
-              {id:'1', name:'React'},
-              {id:'2', name:'Nodejs'},
-            ]
-          }}/>
+          <Link to="/details/1">
+            <Note data={{
+              title: 'React',
+              tags: [
+                {id:'1', name:'React'},
+                {id:'2', name:'Nodejs'},
+              ]
+            }}
+            />
+          </Link>
           
         </Section>
       </Content>
 
-      <NewNote>
+      <NewNote to="/new">
         <FiPlus />
-        <p>Criar Nota</p>
-      </NewNote>
+        <p>Criar nota</p>
+      </NewNote>   
     </Container>
   )
 };
