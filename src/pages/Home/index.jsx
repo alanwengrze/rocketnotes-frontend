@@ -7,7 +7,36 @@ import { Note } from "../../components/Note";
 import { Section } from "../../components/Section";
 import { Link } from "react-router-dom";
 
+import { useState, useEffect } from "react";
+import { api } from "../../services/api";
+
 export function Home(){
+  const [tags, setTags] = useState([]);
+  const [tagsSelected, setTagsSelected] = useState([]);
+
+  function handleTagSelected(tagName){
+    const alreadySelected = tagsSelected.includes(tagName);
+    if(alreadySelected){
+      const filteredTags = tagsSelected.filter(tag => tag !== tagName);
+      setTagsSelected(filteredTags);
+    }else{
+      setTagsSelected(prevState =>[...prevState, tagName]);
+    }
+    if(tagName === "all"){
+      setTagsSelected([]);
+    }
+    
+  }
+
+
+  useEffect(() =>{
+    async function fetchTags(){
+      const response = await api.get("/tags");
+      setTags(response.data);
+    }
+
+    fetchTags();
+  }, []);
   return(
     <Container>
       <Brand>
@@ -18,23 +47,23 @@ export function Home(){
 
       <Menu>
         <li>
-          <ButtonText
+          <ButtonText 
             title="Todos"
-            isActive
+            onClick={() => handleTagSelected("all")}
+            isActive={tagsSelected.length === 0}
           />
         </li>
-
-          <li>
+        {
+         tags && tags.map(tag => (
+          <li key={tag.id}>
             <ButtonText
-              title="React"
+              title={tag.name}
+              onClick={() => handleTagSelected(tag.name)}
+              isActive={tagsSelected.includes(tag.name)}
             />
           </li>
-
-          <li>
-            <ButtonText
-              title="Nodejs"
-            />
-          </li>
+         ))
+        }
       </Menu>
 
       <Search>
