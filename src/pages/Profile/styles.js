@@ -13,10 +13,14 @@ export const Container = styled.div`
     align-items: center;
     padding: 0 12.4rem;
 
-    svg {
+    button {
+      svg {
       color: ${({theme})=> theme.COLORS.GRAY_100};
       font-size: 2.4rem;
+      }
     }
+      
+    
   }
 `;
 

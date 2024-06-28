@@ -7,4 +7,5 @@ export const Container = styled.span`
   margin-right: .6rem;
   color: ${({theme})=> theme.COLORS.BACKGROUND_900};
   background-color: ${({theme})=> theme.COLORS.BLUE};
+  text-transform: uppercase;
 `

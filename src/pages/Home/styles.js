@@ -48,7 +48,9 @@ export const Menu = styled.ul`
 
   > li {
     	margin-bottom: 2rem;
-    
+    button{
+      text-transform: capitalize;
+    }
   }
 
 `;

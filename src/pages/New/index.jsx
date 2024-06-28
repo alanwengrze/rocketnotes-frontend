@@ -5,6 +5,7 @@ import { TextArea } from "../../components/TextArea";
 import { Section } from "../../components/Section";
 import { NoteItem } from "../../components/NoteItem";
 import { Button } from "../../components/Button";
+import { ButtonText } from "../../components/ButtonText";
 import { Link } from "react-router-dom";
 
 import { useState } from "react";
@@ -69,7 +70,10 @@ export function New(){
     });
 
     alert("Nota criada com sucesso!");
-    navigate("/");
+    navigate(-1);
+  }
+  function handleBack(){
+    navigate(-1);
   }
   return ( 
     <Container>
@@ -78,7 +82,10 @@ export function New(){
         <Form>
           <header>
             <h1>Criar nota</h1>
-            <Link to="/">voltar</Link>
+            <ButtonText 
+              title="Voltar"
+              onClick={handleBack}
+            />
           </header>
 
           <Input 

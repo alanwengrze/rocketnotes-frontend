@@ -41,6 +41,7 @@ function AuthProvider({ children }) {
 
         const response = await api.patch("/users/avatar", fileUploadForm);
         user.avatar = response.data.avatar;
+
       }
 
       //atualizar o perfil
